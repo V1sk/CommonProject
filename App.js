@@ -1,22 +1,21 @@
 import React from 'react';
 import {YellowBox} from 'react-native';
-import { Provider } from 'react-redux';
-import { createStore, applyMiddleware } from 'redux';
+import {Provider} from 'react-redux';
+import {createStore, applyMiddleware} from 'redux';
 
 import AppReducer from './src/reducers';
 import AppWithNavigationState from './src/navigators/AppNavigator';
-import { middleware } from './src/utils/redux';
+import {middleware} from './src/utils/redux';
 import thunk from 'redux-thunk'
 
 const store = createStore(
     AppReducer,
-    applyMiddleware(middleware),
-    applyMiddleware(thunk)
+    applyMiddleware(middleware, thunk),
 );
 
 export default class App extends React.Component {
 
-    constructor(){
+    constructor() {
         super();
         YellowBox.ignoreWarnings(['Warning: isMounted(...) is deprecated', 'Module RCTImageLoader']);
     }
@@ -24,7 +23,7 @@ export default class App extends React.Component {
     render() {
         return (
             <Provider store={store}>
-                <AppWithNavigationState />
+                <AppWithNavigationState/>
             </Provider>
         );
     }
