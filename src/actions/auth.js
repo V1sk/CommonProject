@@ -14,11 +14,11 @@ const loginAction = () => ({
 /**
  * Actions dispatcher
  */
-const login = () => (dispatch, getState) => {
+const login = () => async (dispatch, getState) => {
     dispatch(loginAction())
 };
 
-const logout = () => (dispatch, getState) => {
+const logout = () => async (dispatch, getState) => {
     dispatch(logoutAction());
 };
 
