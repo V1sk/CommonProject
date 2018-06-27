@@ -1,51 +1,42 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {Button, StyleSheet, Text, View} from 'react-native';
-import authAction from "../actions/auth";
-import {bindActionCreators} from "redux";
-import {connect} from "react-redux";
+import { Button, StyleSheet, Text, View } from 'react-native';
 
 const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-        backgroundColor: '#F5FCFF',
-    },
-    welcome: {
-        fontSize: 20,
-        textAlign: 'center',
-        margin: 10,
-    },
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#F5FCFF',
+  },
+  welcome: {
+    fontSize: 20,
+    textAlign: 'center',
+    margin: 10,
+  },
 });
 
-const LoginScreen = ({actions}) => (
-    <View style={styles.container}>
-        <Text style={styles.welcome}>
-            Screen A
-        </Text>
-        <Text style={styles.instructions}>
-            This is great
-        </Text>
-        <Button
-            onPress={actions.login}
-            title="Log in"
-        />
-    </View>
+const LoginScreen = ({ navigation }) => (
+  <View style={styles.container}>
+    <Text style={styles.welcome}>
+      Screen A
+    </Text>
+    <Text style={styles.instructions}>
+      This is great
+    </Text>
+    <Button
+      onPress={() => navigation.dispatch({ type: 'Login' })}
+      title="Log in"
+    />
+  </View>
 );
 
 LoginScreen.propTypes = {
-    actions: PropTypes.object.isRequired,
+  navigation: PropTypes.object.isRequired,
 };
 
 LoginScreen.navigationOptions = {
-    title: 'Log In',
+  title: 'Log In',
 };
 
-const mapStateToProps = state => ({});
-
-const mapDispatchToProps = dispatch => ({
-    actions: bindActionCreators(authAction, dispatch)
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(LoginScreen);
+export default LoginScreen;
